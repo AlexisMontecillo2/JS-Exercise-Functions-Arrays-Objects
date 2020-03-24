@@ -267,9 +267,17 @@ function getLastCarInfo(inventory) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * getModelYears returns an array containing all the 'car_year's in the inventory.
 */
-function getModelYears(/* code here */) {
-  /* code here */
+function getModelYears(inventory) {
+  let newArray = [];
+  for (let i=0; i < inventory.length; i++){
+    newArray.push(inventory[i]["car_year"]);
+  }
+  return newArray;
 }
+
+//inventory[inventory.length].car_year
+// create an new array with all car years
+// .map 
 
 /**
  * ### Challenge `getCarInfoById`
@@ -285,8 +293,13 @@ function getModelYears(/* code here */) {
  * For example, if getCarInfoById is invoked with the inventory and the number 1,
  * it will return `This is a Lincoln Navigator`.
 */
-function getCarInfoById(/* code here */) {
-  /* code here */
+function getCarInfoById(inventory, id) {
+  for (let i = 0; i < inventory.length; i++){
+    if (inventory[i]["id"] === id) {
+      let car = inventory[i]
+      return `This is a ${car.car_make} ${car.car_model}`;
+    } //Check the scope. End of if statement.
+  }
 }
 
 /**
@@ -303,8 +316,14 @@ function getCarInfoById(/* code here */) {
  * with a `car_year` which is at most the given desired max year,
  * in the same order as they appear in the original inventory.
 */
-function getOlderCars(/* code here */) {
-  /* code here */
+function getOlderCars(inventory, year) {
+  let newArray = [];
+  for(let i = 0; i < inventory.length; i++){
+    if ( inventory[i]["car_year"] <= year){
+      newArray.push(inventory[i])
+    }
+  }//end forloop
+  return newArray;
 }
 
 /**
@@ -320,8 +339,17 @@ function getOlderCars(/* code here */) {
  * made by either `Audi` or `Mercedes-Benz` or `Volkswagen` or `BMW`,
  * in the same order as they appear in the original inventory.
 */
-function getGermanCars(/* code here */) {
-  /* code here */
+function getGermanCars(inventory) {
+  let germanCar = [];
+  for (let i = 0; i < inventory.length; i++){
+    if (inventory[i]["car_make"] === "Audi"||
+    inventory[i]["car_make"] === "Mercedes-Benz"||
+    inventory[i]['car_make'] === "Volkswagen"||
+    inventory[i]["car_make"] === "BMW"){
+      germanCar.push(inventory[i])
+    }
+  }
+  return germanCar;
 }
 
 /**
